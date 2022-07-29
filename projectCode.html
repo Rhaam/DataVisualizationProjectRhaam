@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<!-- load annotations -->
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+/*.mySlides {display: none}   This was not leeting the text wrap in the annotations*/
+img {vertical-align: middle;}
+
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* On hover, add a black background color with a little bit see-through */
+/*.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}*/
+.prev: {
+  left: 0;
+
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<div class="slideshow-container">
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 5</div>
+  <br>
+<H1>What Can We Learn From Spotify's Top 100 Streamed Songs?</H1>
+
+<br>
+<br>
+<br>
+Most of us listen to music, maybe even everyday...
+Spotify lets people fill their music listening needs while collecting data.
+<br>
+<br>
+We will look at a dataset of Spotify's top 100 streamed songs, the data includes songs from years: 1975, 1995, 2004, 2008, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 and 2021.
+<br> some of the features included are:
+<br>
+• Index: ID
+<br>
+• Title: Name of the Track
+<br>
+• Artist: Name of the Artist
+<br>
+• Top Genre: Genre of the track
+<br>
+• Year: Release Year of the track
+<br>
+• Beats per Minute(BPM): The tempo of the song
+<br>
+• Energy: The energy of a song - the higher the value, the more energtic. song
+<br>
+• Danceability: The higher the value, the easier it is to dance to this song.
+<br>
+• Loudness: The higher the value, the louder the song.
+<br>
+• Valence: The higher the value, the more positive mood for the song.
+<br>
+• Length: The duration of the song.
+<br>
+• Acoustic: The higher the value the more acoustic the song is.
+<br>
+• Speechiness: The higher the value the more spoken words the song contains
+<br>
+• Popularity: The higher the value the more popular the song is.
+
+</div>
+
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 5</div>
+  <br><br>
+  <H2>More details about interesting features</H2>
+
+  <br><br>
+
+  <br>
+  <b>energy</b>:Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+  <br>
+  <b>danceability</b>: Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.
+  <br>
+  <b>loudness</b>: The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typically range between -60 and 0 db
+  <br>
+  <b>valence</b>: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
+  <br>
+  <b>acousticness</b>: A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.
+  <br>
+  <b>speechiness</b>: Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
+  <br>
+  <b>popularity</b>: A score repesenting the popularity of a song.
+ 
+</div>
+
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 5</div>
+  <br><br>
+
+
+<!-- Create a div where the graph will take place -->
+<div >
+  <h1>Correlation Chart</h1>
+
+  <br>
+  <svg id="correlation_chart" width= 800 , height =800> 
+  </svg>
+</div>
+<script>
+
+// Dimension of the whole chart. Only one size since it has to be square
+var marginWhole = {top: 10, right: 10, bottom: 10, left: 10},
+    sizeWhole = 640 - marginWhole.left - marginWhole.right
+
+// Create the svg area
+var svg1 = d3.select("#correlation_chart")
+  .append("svg")
+    .attr("width", sizeWhole  + marginWhole.left + marginWhole.right)
+    .attr("height", sizeWhole  + marginWhole.top + marginWhole.bottom)
+  .append("g")
+    .attr("transform", "translate(" + marginWhole.left + "," + marginWhole.top + ")");
+    d3.select("#correlation_g").attr("transform", "translate(" + marginWhole.left + "," + marginWhole.top + ")");
+
+
+
+
+d3.csv("https://raw.githubusercontent.com/Rhaam/DataVisualizationProjectRhaam/main/topStreamedSongs.csv", function(data) {
+
+  
+  var allVar = ['bpm','energy','danceability','loudness','valence','acousticness']
+  var numVar = allVar.length
+
+
+  mar = 20
+  size = sizeWhole / numVar
+
+  var position = d3.scalePoint()
+    .domain(allVar)
+    .range([0, sizeWhole-size])
+
+  for (i in allVar){
+    for (j in allVar){
+
+      // Get current variable name
+      var var1 = allVar[i]
+      var var2 = allVar[j]
+
+      if (var1 === var2) { continue; }
+
+      // Add X Scale of each graph
+      xextent = d3.extent(data, function(d) { return +d[var1] })
+      var x = d3.scaleLinear()
+        .domain(xextent).nice()
+        .range([ 0, size-2*mar ]);
+
+      // Add Y Scale of each graph
+      yextent = d3.extent(data, function(d) { return +d[var2] })
+      var y = d3.scaleLinear()
+        .domain(yextent).nice()
+        .range([ size-2*mar, 0 ]);
+
+      // Add a 'g' at the right position
+      var tmp = svg1
+        .append('g').attr("transform", "translate(" + (position(var1)+mar) + "," + (position(var2)+mar) + ")");
+
+      // Add X and Y axis in tmp
+      tmp.append("g").attr("transform", "translate(" + 0 + "," + (size-mar*2) + ")")
+        .call(d3.axisBottom(x).ticks(3));
+      tmp.append("g").call(d3.axisLeft(y).ticks(3));
+
+      // Add circle
+      tmp
+        .selectAll("myCircles")
+        .data(data)
+        .enter()
+        .append("circle")
+          .attr("cx", function(d){ return x(+d[var1]) })
+          .attr("cy", function(d){ return y(+d[var2]) })
+          .attr("r", 3)
+          .attr("fill", "darkseagreen")
+    }
+  }
+
+
+  for (i in allVar){
+    for (j in allVar){
+      // If var1 == var2 i'm on the diagonal, otherwisee I skip
+      if (i != j) { continue; }
+      // Add text
+      var var1 = allVar[i]
+      var var2 = allVar[j]
+      svg1
+        .append('g')
+        .attr("transform", "translate(" + position(var1) + "," + position(var2) + ")")
+        .append('text')
+          .attr("x", size/2)
+          .attr("y", size/2)
+          .text(var1)
+          .attr("text-anchor", "middle")
+    }
+  }
+})
+
+</script>
+
+<script type="text/javascript">           
+
+  const annotations = [
+  {
+    note: {
+      label: "Here we can see that some features are related, indeed energy and loudness seem to have a positive correlation so as one incereases so does the other",
+      title: "Correlation Example"
+    },
+    x: 400,
+    y: 140,
+    dy: 110,
+    dx: 230
+  }
+]
+
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("#correlation_chart")
+  .append("g")
+  .call(makeAnnotations)
+
+</script>
+
+ 
+</div>
+
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 5</div>
+  <br>
+  <br>
+  <H1> Bar Charts</H1>
+
+  *Press the buttons to see the mean value of the feature on the button by year*
+  <br>
+  <br>
+  <button onclick="update(data1)">Valence</button>
+<button onclick="update(data2)">Danceabilty</button>
+<button onclick="update(data3)">Energy</button>
+<br><br>
+
+<!-- Create a div where the graph will take place -->
+<div id="bar_plot">  </div>
+<div>Something interesting we can see here is that average valence in songs seems to get higher the more recent the year is.</div>
+<script>
+
+// create 2 data_set
+var data1 = [
+   {group: 1975, value: 22},
+   {group: 1995, value: 47},
+   {group: 2004, value: 24},
+   {group: 2008, value: 72},
+   {group: 2012, value: 50.667},
+   {group: 2013, value: 41.75},
+   {group: 2014, value: 33},
+   {group: 2015, value: 53.615},
+   {group: 2016, value: 50.313},
+   {group: 2017, value: 52.833},
+   {group: 2018, value: 43.6},
+   {group: 2019, value: 59.312},
+   {group: 2020, value: 50.333},
+   {group: 2021, value: 69}
+
+];
+
+var data2 = [
+    {group: 1975, value: 41},
+   {group: 1995, value: 38},
+   {group: 2004, value: 35},
+   {group: 2008, value: 69},
+   {group: 2012, value: 53.333},
+   {group: 2013, value: 51.5},
+   {group: 2014, value: 59.167},
+   {group: 2015, value: 71.384},
+   {group: 2016, value: 67.75},
+   {group: 2017, value: 71.333},
+   {group: 2018, value: 68.75},
+   {group: 2019, value: 70.312},
+   {group: 2020, value: 68.333},
+   {group: 2021, value: 71}
+];
+
+var data3 = [
+    {group: 1975, value: 40},
+   {group: 1995, value: 90},
+   {group: 2004, value: 91},
+   {group: 2008, value: 46},
+   {group: 2012, value: 80.333},
+   {group: 2013, value: 57.25},
+   {group: 2014, value: 56.333},
+   {group: 2015, value: 65.077},
+   {group: 2016, value: 63.687},
+   {group: 2017, value: 64.666},
+   {group: 2018, value: 60.4},
+   {group: 2019, value: 58.437},
+   {group: 2020, value: 73.666},
+   {group: 2021, value: 62.666}
+];
+
+// set the dimensions and margins of the graph
+var margin = {top: 30, right: 30, bottom: 70, left: 60},
+    width = 500 - margin.left - margin.right,
+    height = 510 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg3 = d3.select("#bar_plot")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain([1975,1995,2004,2008,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021])
+  .padding(0.2);
+svg3.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, 100])
+  .range([ height, 0]);
+svg3.append("g")
+  .attr("class", "myYaxis")
+  .call(d3.axisLeft(y));
+
+// A function that create / update the plot for a given variable:
+function update(data) {
+
+  var u = svg3.selectAll("rect")
+    .data(data)
+
+  u
+    .enter()
+    .append("rect")
+    .merge(u)
+    .transition()
+    .duration(1000)
+      .attr("x", function(d) { return x(d.group); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("width", x.bandwidth())
+      //.attr("height", function(d) { return height - y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("fill", "seagreen")
+}
+
+// Initialize the plot with the first dataset
+update(data1)
+
+</script>
+
+</div>
+
+
+<div class="mySlides fade">
+  <div class="numbertext">5 / 5</div>
+  <br><br>
+<H1>Scatter Plot</H1>
+  <div id="scatter_plot" >
+  *Try Hovering over a song to see more details*
+  <br><br>
+</div>
+<div>    In the bar plot we saw that the average valence seems to increase over the years, it could be interesting to look at the relationship between popularity and valence.<br><br>
+
+    We see there does not appear to be a pattern here, but this may be deceiving since all of the songs in our dataset are popular.</div>
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 90},
+    width = 500 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg2 = d3.select("#scatter_plot")
+  .append("svg")
+    .attr("width", 460 + margin.left + margin.right)
+    .attr("height", 450 + margin.top + margin.bottom)
+ 
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/Rhaam/DataVisualizationProjectRhaam/main/topStreamedSongs.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([0, 100])
+    .range([ 0, width ]);
+  svg2.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, 100])
+    .range([ height, 0]);
+  svg2.append("g")
+    .call(d3.axisLeft(y));
+
+        svg2.append("text")      // text label for the y axis
+    .attr("transform", "rotate(-90)")
+        .attr("x", -190 )
+        .attr("y", -50 )
+        .style("text-anchor", "middle")
+        .text("Popularity");
+
+    svg2.append("text")      // text label for the x axis
+        .attr("x", 180 )
+        .attr("y", 450 )
+        .style("text-anchor", "middle")
+        .text("Valence");
+
+
+
+
+  // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+  // Its opacity is set to 0: we don't see it by default.
+  var tooltip = d3.select("#scatter_plot")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+
+
+  // A function that change this tooltip when the user hover a point.
+  // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+  var mouseover = function(d) {
+    tooltip
+      .style("opacity", 1)
+  }
+
+  var mousemove = function(d) {
+    tooltip
+      .html("Song title: "+d.title + "<br>" +"Artist: "+d.artist)
+      .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+
+  // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+  var mouseleave = function(d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+  //
+const annotations2 = [
+  {
+    note: {
+      //label: "Here we can see the most popular song in the dataset *try hovering over to see more",
+      title: "A popular song"
+    },
+    x: 125,
+    y: 35,
+    dy: 120,
+    dx: 100
+  }
+]
+
+ 
+
+
+// Add annotation to the chart
+const makeAnnotations2 = d3.annotation()
+  .annotations(annotations2)
+
+svg2.append("svg").append("g")
+  .call(makeAnnotations2)
+
+
+
+  // Add dots
+  svg2.append('g')
+    .selectAll("dot")
+    .data(data.filter(function(d,i){return i<50})) // the .filter part is just to keep a few dots on the chart, not all of them
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.valence); } )
+      .attr("cy", function (d) { return y(d.popularity); } )
+      .attr("r", 7)
+      .style("fill", "indianred")
+      .style("opacity", 0.4)
+      .style("stroke", "white")
+    .on("mouseover", mouseover )
+    .on("mousemove", mousemove )
+    .on("mouseleave", mouseleave )
+
+})
+
+</script>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+  <span class="dot" onclick="currentSlide(4)"></span> 
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+</body>
+</html> 
