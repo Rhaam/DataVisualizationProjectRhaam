@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- load annotations -->
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <head>
@@ -8,7 +7,6 @@
 <style>
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
-/*.mySlides {display: none}   This was not leeting the text wrap in the annotations*/
 img {vertical-align: middle;}
 
 
@@ -28,6 +26,7 @@ img {vertical-align: middle;}
   padding: 16px;
   margin-top: -22px;
   color: white;
+  background-color: rgba(0,0,0,0.4);
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -35,33 +34,16 @@ img {vertical-align: middle;}
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
-  background-color: rgba(0,0,0,0.4);
 }
 
-/* On hover, add a black background color with a little bit see-through */
-/*.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}*/
 .prev: {
   left: 0;
-
-  background-color: rgba(0,0,0,0.8);
+border-radius: 3px 0 0 3px;
 }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
 
 /* Number text (1/3 etc) */
 .numbertext {
@@ -110,7 +92,6 @@ img {vertical-align: middle;}
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <div class="slideshow-container">
-
 
 
 <div class="mySlides fade">
@@ -268,7 +249,7 @@ d3.csv("https://raw.githubusercontent.com/Rhaam/DataVisualizationProjectRhaam/ma
           .attr("cx", function(d){ return x(+d[var1]) })
           .attr("cy", function(d){ return y(+d[var2]) })
           .attr("r", 3)
-          .attr("fill", "darkseagreen")
+          .attr("fill", "seagreen")
     }
   }
 
@@ -585,7 +566,7 @@ svg2.append("svg").append("g")
       .attr("cx", function (d) { return x(d.valence); } )
       .attr("cy", function (d) { return y(d.popularity); } )
       .attr("r", 7)
-      .style("fill", "indianred")
+      .style("fill", "seagreen")
       .style("opacity", 0.4)
       .style("stroke", "white")
     .on("mouseover", mouseover )
