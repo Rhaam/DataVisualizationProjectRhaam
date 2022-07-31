@@ -172,7 +172,7 @@ We will look at a dataset of Spotify's top 100 streamed songs, the data includes
 
 <!-- Create a div where the graph will take place -->
 <div >
-  <h1>Correlation Chart</h1>
+  <h1>Are Audio Features Related?</h1>
 
   <br>
   <svg id="correlation_chart" width= 800 , height =800> 
@@ -310,7 +310,7 @@ d3.select("#correlation_chart")
   <div class="numbertext">4 / 5</div>
   <br>
   <br>
-  <H1> Bar Charts</H1>
+  <H1>Does Time Change Things?</H1>
 
   *Press the buttons to see the mean value of the feature on the button by year*
   <br>
@@ -322,7 +322,7 @@ d3.select("#correlation_chart")
 
 <!-- Create a div where the graph will take place -->
 <div id="bar_plot">  </div>
-<div>Something interesting we can see here is that average valence in songs seems to get higher the more recent the year is.</div>
+<div>Something interesting we can see here is that average valence in songs seems to get higher the more recent the year is, so maybe time changes the "happiness" in music.</div>
 <script>
 
 // create 2 data_set
@@ -440,14 +440,14 @@ update(data1)
 <div class="mySlides fade">
   <div class="numbertext">5 / 5</div>
   <br><br>
-<H1>Scatter Plot</H1>
+<H1>Is Happy Music Popular Music?</H1>
   <div id="scatter_plot" >
   *Try Hovering over a song to see more details*
   <br><br>
 </div>
 <div>    In the bar plot we saw that the average valence seems to increase over the years, it could be interesting to look at the relationship between popularity and valence.<br><br>
 
-    We see there does not appear to be a pattern here, but this may be deceiving since all of the songs in our dataset are popular.</div>
+    We see there does not appear to be a pattern here, but this may be deceiving since all of the songs in our dataset are popular.  However we definately see that happy music can be very popular. </div>
 <script>
 
 // set the dimensions and margins of the graph
