@@ -177,6 +177,8 @@ We will look at a dataset of Spotify's top 100 streamed songs, the data includes
   <br>
   <svg id="correlation_chart" width= 800 , height =800> 
   </svg>
+  <br>
+  Here we can see that some features are related, indeed energy and loudness seem to have a positive correlation so as one incereases so does the other.
 </div>
 <script>
 
@@ -280,13 +282,14 @@ d3.csv("https://raw.githubusercontent.com/Rhaam/DataVisualizationProjectRhaam/ma
   const annotations = [
   {
     note: {
-      label: "Here we can see that some features are related, indeed energy and loudness seem to have a positive correlation so as one incereases so does the other",
+     // label: ,
       title: "Correlation Example"
     },
     x: 400,
     y: 140,
-    dy: 110,
-    dx: 230
+    dy: 0,
+    dx: 300
+
   }
 ]
 
@@ -536,7 +539,7 @@ const annotations2 = [
   {
     note: {
       //label: "Here we can see the most popular song in the dataset *try hovering over to see more",
-      title: "A popular song"
+      title: "The most popular song"
     },
     x: 125,
     y: 35,
